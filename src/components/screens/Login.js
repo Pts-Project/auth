@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
-import back from '../../back.jpg'
+import sin from '../../sin.jpg'
 
-
+//o3EumnIMceQfPiwQ
+//mongodb+srv://Platform:<password>@cluster0.lsibt.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 const Login = () => {
     const history = useHistory()
@@ -38,7 +39,7 @@ const Login = () => {
     }
     return (
         <div className="mycard">
-            <div className="card auth-card " style={{ backgroundImage: `url(${back})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
+            <div className="card auth-card " style={{ backgroundImage: `url(${sin})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
                 <h6 style={{letterSpacing:"2px"}}>LOGIN</h6><br />
                 <h4 style={{letterSpacing:"2px"}}><bold>PLATFORM</bold></h4>
 
