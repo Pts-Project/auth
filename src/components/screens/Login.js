@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import sin from '../../sin.jpg'
-
+import axios from 'axios'
 //o3EumnIMceQfPiwQ
 //mongodb+srv://Platform:<password>@cluster0.lsibt.mongodb.net/<dbname>?retryWrites=true&w=majority
 
@@ -16,26 +16,56 @@ const Login = () => {
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             return
         }
-        fetch("/login",{
-            method:"post",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-                email,
-                password
+        const logindata={
+            email:email,
+            password:password
+        }
+  
+        axios.post('http://localhost:5000/adminlogin',logindata)
+            .then(res=>{
+                console.log(res.data)
+                if(res.data==="Authenticated"){
+                    history.push('/')
+                }else{
+                   
+                    history.push('/login')
+                    alert("Invalid Username or Password")
+                    setEmail("")
+                    setPassword("")
+                   
+                }
             })
-        }).then(res=>res.json())
-        .then(data=>{
-            if(data.error){
-            M.toast({html: data.error,classes:"#c62828 red darken-3"})
-            }else{
-                M.toast({html: "Login Success",classes:"#43a047 green darken-1"}) 
-                history.push('/')
-            }
-        }).catch(err=>{
-            console.log(err)
-        })
+            .catch(err=>{
+                console.log(err)
+            })
+        // fetch(" http://localhost:5000/adminlogin",{
+        //     method:"post",
+        //     headers:{
+        //         "Content-Type":"application/json"
+        //     },
+        //     body:JSON.stringify({
+        //         email,
+        //         password
+        //     })
+        // })
+        // .then(res=>
+        //     {return res.json();}
+        // )
+        // .then(resData=>{console.log(resData);return resData;})
+        // .catch(err=>{
+        //     console.log(err)
+        // })
+        // }).then(res=>res.json())
+        // .then(data=>{
+        //     if(data.error){
+        //     M.toast({html: data.error,classes:"#c62828 red darken-3"})
+        //     }else{
+        //         M.toast({html: "Login Success",classes:"#43a047 green darken-1"}) 
+        //         history.push('/')
+        //     }
+        // }).catch(err=>{
+        //     console.log(err)
+        // })
     }
     return (
         <div className="mycard">
