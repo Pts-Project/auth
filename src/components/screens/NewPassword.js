@@ -43,15 +43,7 @@ const NewPassword = () => {
 
     }
 
-   /* const checkValidation = (e) => {
-        setConfirmPassword(e.target.value)
-        if (password != confirmPassword) {
-            setIsError("Password do not match")
-        } else {
-            setIsError("")
-        }
-    }
-*/
+
     return (
 
         <div className="mycard">
@@ -66,7 +58,6 @@ const NewPassword = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <label for="password" style={{ textAlign: "center", color: "black" }}>NEW PASSWORD</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS" style={{ align: "center" }}></span>
                 </div>
                 <br />
                 <div class="input-field col s12">
@@ -75,7 +66,6 @@ const NewPassword = () => {
                         onChange={(e) =>setConfirmPassword(e.target.value)}
                     />
                     <label for="password" style={{ textAlign: "center", color: "black" }}>CONFIRM NEW PASSWORD</label>
-                    <span class="helper-text" style={{ align: "center", color: "red" }}></span>
                 </div>
               
 

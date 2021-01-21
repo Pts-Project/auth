@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
-import back from '../../back.jpg'
+import sin from '../../sin.jpg'
 
-
+//o3EumnIMceQfPiwQ
+//mongodb+srv://Platform:<password>@cluster0.lsibt.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 const Login = () => {
     const history = useHistory()
@@ -13,6 +14,7 @@ const Login = () => {
    
     const PostData=()=>{
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+            M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
             return
         }
         fetch("/login",{
@@ -36,13 +38,12 @@ const Login = () => {
             console.log(err)
         })
     }
+  
     return (
         <div className="mycard">
-            <div className="card auth-card " style={{ backgroundImage: `url(${back})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
+            <div className="card auth-card " style={{ backgroundImage: `url(${sin})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
                 <h6 style={{letterSpacing:"2px"}}>LOGIN</h6><br />
                 <h4 style={{letterSpacing:"2px"}}><bold>PLATFORM</bold></h4>
-
-              
 
                 <div class="input-field col s12" style={{ marginTop: "5%" }}>
                     <input id="email" type="email" class="validate"
@@ -50,7 +51,7 @@ const Login = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label for="email" style={{ textAlign: "center", color: "black" }}>EMAIL</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS"  ></span>
+                  
                 </div>
 
                 <div class="input-field col s12" style={{ marginTop: "5%" }}>
@@ -59,12 +60,8 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <label for="password" style={{ textAlign: "center", color: "black" }}>PASSWORD</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS" style={{ align: "center" }}></span>
                 </div>
-               
-                
-
-              
+                             
 
                 <button style={{ borderRadius: "50px", marginTop: "100px", marginBottom: "30px",letterSpacing:"2px" }} className="btn waves-effect #212121 grey darken-4" name="action" type="submit"
                     onClick={() => PostData()}

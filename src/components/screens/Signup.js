@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
-import back from '../../back.jpg'
+import sin from '../../sin.jpg'
 
 
 
@@ -12,44 +12,41 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [mobile, setMobile] = useState("")
-    
-    const PostData=()=>{
-        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            return
-        }
+
+    const PostData = () => {
         if (password !== confirmPassword) {
             M.toast({ html: "Passwords do not match", classes: "#c62828 red darken-3" })
             return
         }
-        fetch("/signup",{
-            method:"post",
-            headers:{
-                "Content-Type":"application/json"
+        fetch("/signup", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 name,
                 email,
                 password,
                 confirmPassword,
                 mobile
             })
-        }).then(res=>res.json())
-        .then(data=>{
-            if(data.error){
-            M.toast({html: data.error,classes:"#c62828 red darken-3"})
-            }else{
-                M.toast({html: data.message,classes:"#43a047 green darken-1"}) 
-                history.push('/login')
-            }
-        }).catch(err=>{
-            console.log(err)
-        })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    M.toast({ html: data.error, classes: "#c62828 red darken-3" })
+                } else {
+                    M.toast({ html: data.message, classes: "#43a047 green darken-1" })
+                    history.push('/login')
+                }
+            }).catch(err => {
+                console.log(err)
+            })
     }
     return (
         <div className="mycard">
-            <div className="card auth-card " style={{ backgroundImage: `url(${back})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
-                <h6 style={{letterSpacing:"2px"}}>SIGNUP</h6><br />
-                <h4 style={{letterSpacing:"2px"}}><bold>PLATFORM</bold></h4>
+            <div className="card auth-card " style={{ backgroundImage: `url(${sin})`, minWidth: "100%", minHeight: "100%", backgroundPosition: "centre", backgroundSize: "cover" }}>
+                <h6 style={{ letterSpacing: "2px" }}>SIGNUP</h6><br />
+                <h4 style={{ letterSpacing: "2px" }}><bold>PLATFORM</bold></h4>
 
                 <div class="input-field col s12" style={{ marginTop: "10%" }}>
                     <input id="text" type="text" class="validate"
@@ -57,7 +54,7 @@ const Signup = () => {
                         onChange={(e) => setName(e.target.value)}
                     />
                     <label for="text" style={{ textAlign: "center", color: "black" }}>NAME</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS"  ></span>
+
                 </div>
 
                 <div class="input-field col s12" style={{ marginTop: "5%" }}>
@@ -66,7 +63,7 @@ const Signup = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label for="email" style={{ textAlign: "center", color: "black" }}>EMAIL</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS"  ></span>
+
                 </div>
 
                 <div class="input-field col s12" style={{ marginTop: "5%" }}>
@@ -75,7 +72,7 @@ const Signup = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <label for="password" style={{ textAlign: "center", color: "black" }}>PASSWORD</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS" style={{ align: "center" }}></span>
+
                 </div>
                 <br />
                 <div class="input-field col s12">
@@ -84,7 +81,7 @@ const Signup = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <label for="password" style={{ textAlign: "center", color: "black" }}>CONFIRM PASSWORD</label>
-                    <span class="helper-text" style={{ align: "center", color: "red" }}></span>
+
                 </div>
 
                 <div class="input-field col s12" style={{ marginTop: "5%" }}>
@@ -93,10 +90,10 @@ const Signup = () => {
                         onChange={(e) => setMobile(e.target.value)}
                     />
                     <label for="text" style={{ textAlign: "center", color: "black" }}>PHONE</label>
-                    <span class="helper-text" data-error="INVALID EMAIL ADDRESS"  ></span>
+
                 </div>
 
-                <button style={{ borderRadius: "50px", marginTop: "100px", marginBottom: "30px",letterSpacing:"2px" }} className="btn waves-effect #212121 grey darken-4" name="action" type="submit"
+                <button style={{ borderRadius: "50px", marginTop: "100px", marginBottom: "30px", letterSpacing: "2px" }} className="btn waves-effect #212121 grey darken-4" name="action" type="submit"
                     onClick={() => PostData()}
                 >
                     <strong>  SIGN UP</strong>
